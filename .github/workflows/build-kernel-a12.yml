@@ -111,6 +111,7 @@ jobs:
           name: boot-images-android12
           path: Image-android12*/*.img.gz
 
+
   check-build-kernel:
     if: (github.event_name == 'pull_request' && !github.event.pull_request.draft) || github.ref == 'refs/heads/checkci'
     uses: ./.github/workflows/gki-kernel.yml
