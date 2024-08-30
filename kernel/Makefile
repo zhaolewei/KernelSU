@@ -21,7 +21,7 @@ ifeq ($(shell test -e $(srctree)/$(src)/../.git; echo $$?),0)
 $(shell cd $(srctree)/$(src); /usr/bin/env PATH="$$PATH":/usr/bin:/usr/local/bin [ -f ../.git/shallow ] && git fetch --unshallow)
 KSU_GIT_VERSION := $(shell cd $(srctree)/$(src); /usr/bin/env PATH="$$PATH":/usr/bin:/usr/local/bin git rev-list --count HEAD)
 # ksu_version: major * 10000 + git version + 200 for historical reasons
-$(eval KSU_VERSION=$(shell expr 10000 + $(KSU_GIT_VERSION) + 200))
+# $(eval KSU_VERSION=$(shell expr 10000 + $(KSU_GIT_VERSION) + 200))
 $(info -- KernelSU version: $(KSU_VERSION))
 ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 else # If there is no .git file, the default version will be passed.
@@ -30,11 +30,11 @@ ccflags-y += -DKSU_VERSION=16
 endif
 
 ifndef KSU_EXPECTED_SIZE
-KSU_EXPECTED_SIZE := 0x033b
+KSU_EXPECTED_SIZE := 0x29a
 endif
 
 ifndef KSU_EXPECTED_HASH
-KSU_EXPECTED_HASH := c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6
+KSU_EXPECTED_HASH := 3e0ed2d436ece1922d29fddd9f45be87b779cc1c24aa83938dfbd5109efbbd01
 endif
 
 ifdef KSU_MANAGER_PACKAGE
